@@ -1,11 +1,20 @@
-from caracara.common.pagination import all_pages_numbered_offset, all_pages_numbered_offset_parallel, all_pages_token_offset, generic_parallel_list_execution
-
-from unittest import mock
-from functools import partial
-
-import pytest
+"""Unit tests for the pagination module"""
 import logging
 import uuid
+
+import pytest
+
+from caracara.common.pagination import (
+    all_pages_numbered_offset,
+    all_pages_numbered_offset_parallel,
+    all_pages_token_offset,
+    generic_parallel_list_execution)
+
+
+
+
+# We have to disable redefined-outer-name, as pytest fixtures break this linting check by design.
+# pylint: disable=redefined-outer-name
 
 @pytest.fixture
 def logger():
@@ -14,7 +23,7 @@ def logger():
     """
     return logging.getLogger(__name__)
 
-TEST_DATA = [i for i in range(100)]
+TEST_DATA = list(range(100))
 TOKENS = [uuid.uuid4().hex for _ in range(100)]
 
 def mock_numerical_offset(body):
@@ -35,7 +44,9 @@ def mock_numerical_offset(body):
     }
 
 def mock_numerical_offset_parallel(offset, limit):
-    """Mocks a paginated API endpoint according as expected by `all_pages_numbered_offset_parallel`"""
+    """Mocks a paginated API endpoint according as expected by 
+    `all_pages_numbered_offset_parallel`
+    """
     return {
         "body" : {
             "resources": 
@@ -52,6 +63,7 @@ def mock_numerical_offset_parallel(offset, limit):
     }
 
 def mock_all_pages_token_offset(offset: str, limit: int):
+    """Mocks a paginated API endpoint according as expected by `all_pages_token_offset`"""
     offset_idx = TOKENS.index(offset) if offset is not None else 0
     return {
         "body" : {
@@ -69,6 +81,9 @@ def mock_all_pages_token_offset(offset: str, limit: int):
     }
 
 def mock_all_pages_token_offset_after(after: str, limit: int):
+    """Mocks a paginated API endpoint according as expected by 
+    `all_pages_token_offset(offset_key_named_after=True)`
+    """
     offset_idx = TOKENS.index(after) if after is not None else 0
     return {
         "body" : {
@@ -86,6 +101,7 @@ def mock_all_pages_token_offset_after(after: str, limit: int):
     }
 
 def mock_func_for_generic_parallel_list_execution(param):
+    """Mocks a paginated API endpoint according as expected by `generic_parallel_list_execution`"""
     return {"body": {"resources": [param]}}
 
 def test_all_pages_numbered_offset(logger):
@@ -127,4 +143,3 @@ def test_generic_parallel_list_execution(logger):
         value_list = ["uuid1", "uuid2", "uuid3"]
     )
     assert result == ["uuid1", "uuid2", "uuid3"]
-
