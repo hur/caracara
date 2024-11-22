@@ -73,7 +73,7 @@ class VariableInterpolator:  # pylint: disable=too-few-public-methods
             """
             interpolation_str = f"${{{match}}}"
             self.logger.debug("Interpolating the environment variable: %s", match)
-            output_string = output_string.replace(interpolation_str, os.environ.get(match, match))
+            output_string = output_string.replace(interpolation_str, os.environ.get(match, interpolation_str))
 
         # Unescape by replacing double dollar signs with single dollar signs
         output_string = output_string.replace("$$", "$")
