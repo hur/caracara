@@ -10,15 +10,12 @@ IOCs are returned.
 The example demonstrates how to use the IOC API.
 """
 import logging
-from typing import Dict, List
 
 from caracara import Client
 from caracara.modules.ioc.ioc import IOC
 from examples.common import (
     NoIocsFound,
-    Timer,
     caracara_example,
-    parse_filter_list,
     pretty_print,
 )
 
@@ -28,8 +25,6 @@ def create_ioc(**kwargs):
     """Create a new IOC."""
     client: Client = kwargs["client"]
     logger: logging.Logger = kwargs["logger"]
-    settings: Dict = kwargs["settings"]
-    timer: Timer = Timer()
 
     ioc = IOC(
         type="domain", 
@@ -49,7 +44,6 @@ def create_ioc(**kwargs):
         )
 
     logger.info("%s", pretty_print(response.dump()))
-
 
 
 if __name__ in ["__main__", "examples.ioc.create_ioc"]:
