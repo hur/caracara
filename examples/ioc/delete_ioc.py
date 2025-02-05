@@ -31,7 +31,7 @@ def delete_ioc(**kwargs):
 
     with client:
         response = client.ioc.delete_by_filter(
-            filters, comment="an test caracara IOC api"
+            filters, comment="Caracara Examples/delete_ioc.py"
         )
 
     logger.info("%s", pretty_print(response))
