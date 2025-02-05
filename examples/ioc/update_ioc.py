@@ -20,7 +20,7 @@ from examples.common import (
 
 @caracara_example
 def update_ioc(**kwargs):
-    """TODO"""
+    """Example of updating the IOC created by examples/create_ioc.py"""
     client: Client = kwargs["client"]
     logger: logging.Logger = kwargs["logger"]
 
