@@ -9,14 +9,13 @@ update the example IOC created by create_ioc.py within your Falcon tenant.
 The example demonstrates how to use the IOC API.
 """
 import logging
-from typing import Dict, List
+from typing import Dict
 
 from caracara import Client
 from examples.common import (
     NoIocsFound,
     Timer,
     caracara_example,
-    parse_filter_list,
     pretty_print,
 )
 
