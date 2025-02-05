@@ -13,7 +13,6 @@ import logging
 from caracara import Client
 from examples.common import (
     NoIocsFound,
-    Timer,
     caracara_example,
     pretty_print,
 )
