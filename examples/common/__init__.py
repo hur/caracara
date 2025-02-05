@@ -14,6 +14,7 @@ from examples.common.exceptions import (
     NoGroupsFound,
     NoLoginsFound,
     NoSessionsConnected,
+    NoIocsFound,
 )
 from examples.common.filter_loader import parse_filter_list
 from examples.common.prompts import choose_item

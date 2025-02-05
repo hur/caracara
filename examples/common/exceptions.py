@@ -93,6 +93,24 @@ class NoAddressesFound(BaseError):
     def __str__(self):
         """Return the FQL filter along with the message."""
         return f"{self.filter_fql} -> {self.message}"
+    
+
+class NoIocsFound(BaseError):
+    """No IOCs were found matching the filter provided."""
+
+    def __init__(
+        self,
+        filter_fql: str = "No filters applied.",
+        message: str = "No IOCs matched the provided Falcon Filter.",
+    ):
+        """Initialize a NoIocsFound error."""
+        self.filter_fql = filter_fql
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        """Return the FQL filter along with the message."""
+        return f"{self.filter_fql} -> {self.message}"
 
 
 class NoSessionsConnected(BaseError):

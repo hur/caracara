@@ -65,6 +65,7 @@ class HostsApiModule(FalconApiModule):
         describe_group_members,
         describe_groups,
         get_group_ids,
+        get_groups_by_ids,
         get_group_member_ids,
         get_group_members,
         group,

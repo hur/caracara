@@ -74,6 +74,20 @@ class HostGroupNotFound(GenericAPIError):
         super().__init__(self.errors)
 
 
+class IocNotFound(GenericAPIError):
+    """The IOC you specified is not found."""
+
+    def __init__(self):
+        """Construct an instance of the IocNotFound class."""
+        self.errors = [
+            {
+                "code": 404,
+                "message": "The Falcon Filter you provided returned no IOC matches",
+            }
+        ]
+        super().__init__(self.errors)
+
+
 class DeviceNotFound(GenericAPIError):
     """The device you specified is not found."""
 

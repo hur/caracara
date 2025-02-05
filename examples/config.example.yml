@@ -69,3 +69,7 @@ globals:
           - OS: Linux
           - Hostname: example-host-2
         command: ls
+    ioc:
+      find_iocs:
+        filters:
+          - type: domain

@@ -26,6 +26,7 @@ from caracara.modules import (
     CustomIoaApiModule,
     FlightControlApiModule,
     HostsApiModule,
+    IocApiModule,
     PreventionPoliciesApiModule,
     ResponsePoliciesApiModule,
     RTRApiModule,
@@ -160,6 +161,10 @@ class Client:
         self.logger.debug("Setting up the Hosts module")
         self.hosts = HostsApiModule(self.api_authentication, mapper)
         mapper.hosts = self.hosts
+
+        self.logger.debug("Setting up the IOC module")
+        self.ioc = IocApiModule(self.api_authentication, mapper)
+        mapper.ioc = self.ioc
 
         self.logger.debug("Setting up the Prevention Policies module")
         self.prevention_policies = PreventionPoliciesApiModule(self.api_authentication, mapper)

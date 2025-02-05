@@ -242,6 +242,25 @@ def describe_groups(
 
     return group_data
 
+def get_groups_by_ids(
+    self: HostsApiModule,
+    group_ids: List[str] = None,
+) -> Dict[str, Dict]:
+    """Return a dictionary containing detail for every host group for provided ids.
+
+    Arguments
+    ---------
+    group_ids: List[str]
+        Ids to look up.
+
+    Returns
+    -------
+    dict: A dictionary containing details for every host group discovered.
+    """
+    group_data = batch_get_data(group_ids, self.host_group_api.get_host_groups)
+
+    return group_data
+
 
 @filter_string
 def get_group_ids(

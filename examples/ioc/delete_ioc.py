@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+r"""Caracara Examples Collection.
+
+delete_ioc.py
+
+This example will use the API credentials configured in your config.yml file to
+find a specified device within your Falcon tenant. When no search is provided, all
+IOCs are returned.
+
+The example demonstrates how to use the IOC API.
+"""
+import logging
+from typing import Dict, List
+
+from caracara import Client
+from caracara.modules.ioc.ioc import IOC
+from examples.common import (
+    NoIocsFound,
+    Timer,
+    caracara_example,
+    parse_filter_list,
+    pretty_print,
+)
+
+
+@caracara_example
+def delete_ioc(**kwargs):
+    """Delete an IOC."""
+    client: Client = kwargs["client"]
+    logger: logging.Logger = kwargs["logger"]
+
+    filters = client.FalconFilter(dialect="iocs")
+    filters.create_new_filter("type", "domain")
+    filters.create_new_filter("value", "example.com")
+
+    with client:
+        response = client.ioc.delete_by_filter(
+            filters, comment="an test caracara IOC api"
+        )
+
+    logger.info("%s", pretty_print(response))
+
+
+if __name__ in ["__main__", "examples.ioc.delete_ioc"]:
+    try:
+        delete_ioc()
+        raise SystemExit
+    except NoIocsFound as no_iocs:
+        raise SystemExit(no_iocs) from no_iocs

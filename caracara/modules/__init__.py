@@ -9,6 +9,7 @@ __all__ = [
     "CustomIoaApiModule",
     "FlightControlApiModule",
     "HostsApiModule",
+    "IocApiModule",
     "PreventionPoliciesApiModule",
     "ResponsePoliciesApiModule",
     "RTRApiModule",
@@ -20,6 +21,7 @@ __all__ = [
 from caracara.modules.custom_ioa import CustomIoaApiModule
 from caracara.modules.flight_control import FlightControlApiModule
 from caracara.modules.hosts import HostsApiModule
+from caracara.modules.ioc import IocApiModule
 from caracara.modules.prevention_policies import PreventionPoliciesApiModule
 from caracara.modules.response_policies import ResponsePoliciesApiModule
 from caracara.modules.rtr import RTRApiModule
