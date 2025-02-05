@@ -9,7 +9,6 @@ update the example IOC created by create_ioc.py within your Falcon tenant.
 The example demonstrates how to use the IOC API.
 """
 import logging
-from typing import Dict
 
 from caracara import Client
 from examples.common import (
@@ -25,8 +24,6 @@ def update_ioc(**kwargs):
     """TODO"""
     client: Client = kwargs["client"]
     logger: logging.Logger = kwargs["logger"]
-    settings: Dict = kwargs["settings"]
-    timer: Timer = Timer()
 
     filters = client.FalconFilter(dialect="iocs")
     filters.create_new_filter("type", "domain")
