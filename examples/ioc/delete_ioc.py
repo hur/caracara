@@ -10,15 +10,11 @@ IOCs are returned.
 The example demonstrates how to use the IOC API.
 """
 import logging
-from typing import Dict, List
 
 from caracara import Client
-from caracara.modules.ioc.ioc import IOC
 from examples.common import (
     NoIocsFound,
-    Timer,
     caracara_example,
-    parse_filter_list,
     pretty_print,
 )
 
