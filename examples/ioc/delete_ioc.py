@@ -30,8 +30,9 @@ def delete_ioc(**kwargs):
     filters.create_new_filter("value", "example.com")
 
     with client:
-        response = client.ioc.delete_by_filter(
-            filters, comment="Caracara Examples/delete_ioc.py"
+        iocs = client.ioc.describe_iocs(filters)
+        response = client.ioc.delete(
+            iocs, comment="Caracara Examples/delete_ioc.py"
         )
 
     logger.info("%s", pretty_print(response))

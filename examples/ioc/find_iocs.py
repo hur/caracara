@@ -43,7 +43,7 @@ def find_iocs(**kwargs):
     with client:
         response = client.ioc.describe_iocs(filters)
     for ioc_data in response:
-        logger.info("%s", pretty_print(ioc_data.dump()))
+        logger.info("%s", repr(ioc_data))
 
     logger.info("Found %d IOCs in %f seconds", len(response), float(timer))
     if not response:

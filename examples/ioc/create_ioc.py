@@ -24,26 +24,32 @@ from examples.common import (
 def create_ioc(**kwargs):
     """Create a new IOC."""
     client: Client = kwargs["client"]
+    
     logger: logging.Logger = kwargs["logger"]
 
-    ioc = IOC(
-        type="domain", 
-        value="example.com",
-        action="no_action", 
-        description="Caracara Example IOC",
-        applied_globally=True,
-        platforms=["linux"],
-    )
+    #ioc = IOC(
+    #    type="domain", 
+    #    value="example.com",
+    #    action="no_action", 
+    #    description="Caracara Example IOC",
+    #    applied_globally=True,
+    #    platforms=["linux"],
+    #)
 
     with client:
         response = client.ioc.create(
-            ioc, 
-            comment="Caracara Example IOC creation", 
+            type="domain", 
+            value="example.com",
+            action="no_action",
+            platforms=["Linux"],
+            comment="Caracara Example IOC creation",
+            #description="Caracara Example IOC",
+            applied_globally=True, 
             retrodetects=False, 
             ignore_warnings=False
         )
 
-    logger.info("%s", pretty_print(response.dump()))
+    logger.info("%s", repr(response))
 
 
 if __name__ in ["__main__", "examples.ioc.create_ioc"]:

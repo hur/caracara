@@ -38,14 +38,14 @@ def update_ioc(**kwargs):
     if iocs:
         logger.info("Updating matching IOCs")
 
-    for ioc in iocs:
-        if ioc.description == "Caracara Example IOC":
-            ioc.description += "; modified by caracara examples/update_ioc.py"
+    #for ioc in iocs:
+        #if ioc.description == "Caracara Example IOC":
+        #    ioc.description += "; modified by caracara examples/update_ioc.py"
     
     with client:
-        response = client.ioc.update_batch(iocs)
+        response = client.ioc.update(iocs, comment="caracara example update_ioc.py")
     for ioc_data in response:
-        logger.info("%s", pretty_print(ioc_data.dump()))
+        logger.info("%s", repr(ioc_data))
 
 
 if __name__ in ["__main__", "examples.ioc.find_iocs"]:
